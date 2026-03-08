@@ -2,19 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 @Injectable()
 export class AppService {
-  // @Cron(CronExpression.EVERY_10_SECONDS)
-  @Cron(CronExpression.EVERY_MINUTE)
-  async pingSelf() {
-    const baseUrl = process.env.BASE_URL;
-    console.log(`Pinging self at ${baseUrl}`);
-    try {
-      const res = await fetch(`${baseUrl}`);
-      console.log(`Self ping response: ${res.status}`);
-    } catch (e) {
-      console.log(`Error pinging self: ${e}`);
-    }
-  }
-
   getHello() {
     return `
       <div style="min-height: 100vh; margin: 0;
@@ -27,4 +14,16 @@ export class AppService {
       </div>
     `;
   }
+  // @Cron(CronExpression.EVERY_10_SECONDS)
+  // @Cron(CronExpression.EVERY_MINUTE)
+  // async pingSelf() {
+  //   const baseUrl = process.env.BASE_URL;
+  //   console.log(`Pinging self at ${baseUrl}`);
+  //   try {
+  //     const res = await fetch(`${baseUrl}`);
+  //     console.log(`Self ping response: ${res.status}`);
+  //   } catch (e) {
+  //     console.log(`Error pinging self: ${e}`);
+  //   }
+  // }
 }

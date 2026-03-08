@@ -10,8 +10,8 @@ export class AppController {
     console.log("Accessing the root endpoint");
     return this.appService.getHello();
   }
-  @Get('/health')
-  healthCheck() {
-    return this.appService.pingSelf();
-  }
+  // @Get('/ping-self')
+  // pingSelf() {
+  //   return this.appService.pingSelf();
+  // }
 }

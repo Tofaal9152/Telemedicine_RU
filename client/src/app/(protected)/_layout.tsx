@@ -1,4 +1,3 @@
-import LogoutSample from "@/components/Signout";
 import { useAuthStore } from "@/store/authStore";
 import { Stack } from "expo-router";
 import { StyleSheet, View } from "react-native";
@@ -7,6 +6,7 @@ export default function ProtectedLayout() {
   const role = useAuthStore((state) => state.role);
 
   const isPatient = role === "patient";
+  const isDoctor = role === "doctor";
   return (
     <View style={styles.container}>
       <Stack
@@ -17,7 +17,7 @@ export default function ProtectedLayout() {
         <Stack.Protected guard={isPatient}>
           <Stack.Screen name="(patient)" options={{ headerShown: false }} />
         </Stack.Protected>
-        <Stack.Protected guard={!isPatient}>
+        <Stack.Protected guard={isDoctor}>
           <Stack.Screen name="(doctor)" options={{ headerShown: false }} />
         </Stack.Protected>
       </Stack>

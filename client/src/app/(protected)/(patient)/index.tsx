@@ -1,14 +1,5 @@
-import LogoutSample from "@/components/Signout";
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
+import HomeScreen from "@/features/protected/patient/home/ui/HomeScreen";
 
-export default function PatientLayout() {
-  return (
-    <ThemedView
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-    >
-      <ThemedText>Patient Dashboard</ThemedText>
-      <LogoutSample />
-    </ThemedView>
-  );
+export default function PatientHomeLayout() {
+  return <HomeScreen />;
 }

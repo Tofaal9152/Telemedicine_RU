@@ -14,12 +14,12 @@ import { AppointmentsModule } from './appointments/appointments.module';
 import { PrescriptionModule } from './prescription/prescription.module';
 import { ChatModule } from './chat/chat.module';
 import { AppService } from './app.service';
-import { ScheduleModule } from '@nestjs/schedule';
+// import { ScheduleModule } from '@nestjs/schedule';
 import { NotificationModule } from './notification/notification.module';
 import { UploadModule } from './upload/upload.module';
 @Module({
   imports: [
-    ScheduleModule.forRoot(),
+    // ScheduleModule.forRoot(),
     ConfigModule.forRoot({ isGlobal: true }),
     PrismaModule,
     AuthModule,

@@ -77,8 +77,7 @@ export function useZodTanstackForm<TValues extends Record<string, any>>(
 
     onSubmit: async ({ value }) => {
       onValidSubmit?.(value);
-      mutation.mutate(value);
-      resetAll();
+      mutation.mutate(value,);
     },
   });
 
@@ -88,6 +87,11 @@ export function useZodTanstackForm<TValues extends Record<string, any>>(
     form.reset();
     setSubmitErrors([]);
   };
+
+  // Reset form on successful mutation
+  if (mutation.isSuccess) {
+    resetAll();
+  }
 
   const errorSummary = useMemo(() => {
     return {

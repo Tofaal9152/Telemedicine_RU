@@ -49,6 +49,7 @@ export function useMutationHandler<TData, TVariables>({
     },
 
     onError: (error) => {
+      // error te string kore dekhau
       console.log(error)
       const msg =
         error.response?.data?.message ||

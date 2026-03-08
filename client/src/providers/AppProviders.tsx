@@ -3,6 +3,7 @@ import { Fragment, ReactNode } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 import QueryProvider from "./QueryProvider";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 type Props = { children: ReactNode };
 
 const safeAreaStyle = { flex: 1 };
@@ -13,7 +14,7 @@ export default function AppProviders({ children }: Props) {
       <QueryProvider>
         <SafeAreaProvider>
           <SafeAreaView style={safeAreaStyle}>
-            {children}
+            <KeyboardProvider>{children}</KeyboardProvider>
             <StatusBar style="auto" animated />
             <Toast />
           </SafeAreaView>
