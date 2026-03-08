@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "Telemedicine",
+    "slug": "telemedicine",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icons/adaptive-icon.png",
+    "scheme": "telemedicine",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "icon": {
+        "dark": "./src/assets/icons/ios-dark.png",
+        "light": "./src/assets/icons/ios-light.png"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "./src/assets/icons/adaptive-icon.png",
+        "monochromeImage": "./src/assets/icons/adaptive-icon.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.tofaal9152.telemedicine"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./src/assets/icons/adaptive-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/icons/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./src/assets/icons/splash-icon.png",
+            "backgroundColor": "#ffffff"
+          }
+        }
+      ],
+      "expo-secure-store",
+      "@react-native-community/datetimepicker"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
