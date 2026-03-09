@@ -1,10 +1,10 @@
-import { Stack } from "expo-router";
+import HomeScreen from "@/features/protected/doctor/home/ui/HomeScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function AuthLayout() {
+export default function DoctorLayout() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <HomeScreen />
     </SafeAreaView>
   );
 }

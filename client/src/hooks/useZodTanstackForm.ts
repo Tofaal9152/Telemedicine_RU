@@ -1,6 +1,5 @@
 "use client";
 
-// eslint-disable-next-line import/no-unresolved
 import { getSubmitFieldErrorsFromMeta } from "@/utils/formErrors";
 import { useForm } from "@tanstack/react-form";
 import { useMemo, useState } from "react";
@@ -8,6 +7,7 @@ import type { ZodSchema } from "zod";
 
 type AnyMutationLike<T> = {
   mutate: (data: T) => void;
+  mutateAsync: (data: T, options?: any) => Promise<any>; // ✅ এটি যোগ করুন
   reset: () => void;
   isPending: boolean;
   isError: boolean;
@@ -77,7 +77,14 @@ export function useZodTanstackForm<TValues extends Record<string, any>>(
 
     onSubmit: async ({ value }) => {
       onValidSubmit?.(value);
-      mutation.mutate(value,);
+      try {
+        // ✅ mutateAsync ব্যবহার করলে API রেসপন্স আসা পর্যন্ত অপেক্ষা করবে
+        await mutation.mutateAsync(value);
+        // ✅ API সফল হলে তারপর ফর্ম রিসেট হবে
+        resetAll();
+      } catch (error) {
+        console.error("Mutation failed:", error);
+      }
     },
   });
 
@@ -87,11 +94,6 @@ export function useZodTanstackForm<TValues extends Record<string, any>>(
     form.reset();
     setSubmitErrors([]);
   };
-
-  // Reset form on successful mutation
-  if (mutation.isSuccess) {
-    resetAll();
-  }
 
   const errorSummary = useMemo(() => {
     return {

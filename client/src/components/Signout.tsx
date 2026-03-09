@@ -1,5 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { Alert, Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useAuthStore } from "../store/authStore";
 
 const styles = StyleSheet.create({
@@ -22,9 +23,12 @@ const styles = StyleSheet.create({
 
 export default function LogoutSample() {
   const { reset } = useAuthStore();
+  // all querykey invalidate
+  const queryClient = useQueryClient();
 
   const handleLogout = () => {
     reset(); // auth store reset
+    queryClient.clear(); // react-query cache clear
   };
 
   const showLogoutAlert = () => {

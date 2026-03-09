@@ -1,0 +1,10 @@
+import AppointmentScreen from "@/features/protected/patient/tabs/appointments/ui/AppointmentScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function AppointmentsIndex() {
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <AppointmentScreen />
+    </SafeAreaView>
+  );
+}

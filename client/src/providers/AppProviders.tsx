@@ -6,23 +6,24 @@ import QueryProvider from "./QueryProvider";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 type Props = { children: ReactNode };
 
-const safeAreaStyle = { flex: 1 };
-
 export default function AppProviders({ children }: Props) {
   return (
     <Fragment>
       <QueryProvider>
         <SafeAreaProvider>
-          <SafeAreaView style={safeAreaStyle}>
-            <KeyboardProvider>{children}</KeyboardProvider>
-            <StatusBar style="auto" animated />
-            <Toast />
-          </SafeAreaView>
+          {/* <SafeAreaView style={safeAreaStyle}> */}
+          <KeyboardProvider>{children}</KeyboardProvider>
+          <StatusBar style="auto" animated />
+          <Toast />
+          {/* </SafeAreaView> */}
         </SafeAreaProvider>
       </QueryProvider>
     </Fragment>
   );
 }
+// =-------- =------- =----- =---->
+// Only for ThemeProvider, which is currently not used. Uncomment if you want to use it in the future.
+
 // import {
 //   DarkTheme,
 //   DefaultTheme,
