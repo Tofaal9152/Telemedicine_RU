@@ -13,7 +13,7 @@ export default function QueryProvider({ children }: Props) {
             refetchOnWindowFocus: false,
             refetchOnReconnect: false, // ✅ net back হলে auto refetch off
             refetchOnMount: false, // ✅ screen mount হলে auto refetch off
-            staleTime: 60_000, 
+            staleTime: 60_000,
           },
           mutations: {
             retry: false,

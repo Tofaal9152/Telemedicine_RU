@@ -10,12 +10,6 @@ const HomeScreen = () => {
 
   const doctor = user?.doctor;
 
-  const todayStats = {
-    appointments: 5,
-    patients: 12,
-    earnings: 220,
-  };
-
   const recentActivities = [
     "New appointment booked",
     "Profile updated",

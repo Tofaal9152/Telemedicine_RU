@@ -8,6 +8,10 @@ export default function DoctorLayout() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="appointment/paid/[id]/index"
+        options={{ headerShown: true, title: "Consultation" }}
+      />
     </Stack>
   );
 }

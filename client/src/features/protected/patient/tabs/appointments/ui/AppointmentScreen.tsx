@@ -17,7 +17,10 @@ const AppointmentScreen = () => {
 
   const apiData = userQuery.data;
 
-  const appointments: any[] = apiData?.results ?? [];
+  const appointments: any[] = useMemo(
+    () => apiData?.results ?? [],
+    [apiData?.results]
+  );
   const currentPage = apiData?.currentPage ?? 1;
   const totalPages = apiData?.totalPages ?? 1;
   const hasNextPage = currentPage < totalPages;

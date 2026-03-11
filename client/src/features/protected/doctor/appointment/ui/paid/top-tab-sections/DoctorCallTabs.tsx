@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const CallTabs = () => {
+const DoctorCallTabs = () => {
   return (
     <View>
-      <Text>CallTabs</Text>
+      <Text>DoctorCallTabs</Text>
     </View>
   )
 }
 
-export default CallTabs
+export default DoctorCallTabs

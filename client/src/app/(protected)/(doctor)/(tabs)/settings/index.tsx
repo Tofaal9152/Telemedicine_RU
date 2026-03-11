@@ -1,4 +1,4 @@
-import SettingScreen from "@/features/protected/doctor/settings/ui/SettingScreen";
+import SettingScreen from "@/features/protected/doctor/tabs/settings/ui/SettingScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SettingsIndex() {

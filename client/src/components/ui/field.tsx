@@ -153,7 +153,7 @@ function FieldError({
   ...props
 }: ViewProps & {
   children?: React.ReactNode;
-  errors?: Array<{ message?: string } | undefined>;
+  errors?: ({ message?: string } | undefined)[];
 }) {
   const content = useMemo(() => {
     if (children) {

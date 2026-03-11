@@ -1,4 +1,4 @@
-import HomeScreen from "@/features/protected/doctor/home/ui/HomeScreen";
+import HomeScreen from "@/features/protected/doctor/tabs/home/ui/HomeScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function DoctorLayout() {

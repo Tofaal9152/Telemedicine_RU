@@ -30,9 +30,10 @@ export function useLoginMutation() {
     },
     onSuccess: (response: any) => {
       const { user, accessToken } = response;
-      const { setRole, setIsLoggedIn, setToken } = useAuthStore.getState();
+      const { setRole, setIsLoggedIn, setToken, setUserId } = useAuthStore.getState();
 
       setRole(user.role.toLowerCase());
+      setUserId(user.id);
       setToken(accessToken);
       setIsLoggedIn(true);
     },

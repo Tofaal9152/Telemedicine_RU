@@ -11,11 +11,23 @@ export default function PatientLayout() {
 
       <Stack.Screen
         name="appointment/payment/index"
-        options={{ headerShown: true, title: "Appointment Payment" }}
+        options={{
+          headerShown: true,
+          title: "Appointment Payment",
+          headerStyle: { backgroundColor: "#233B4D" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "600" },
+        }}
       />
       <Stack.Screen
         name="appointment/paid/[id]/index"
-        options={{ headerShown: true, title: "Consultation" }}
+        options={{
+          headerShown: true,
+          title: "Consultation",
+          headerStyle: { backgroundColor: "#233B4D" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "600" },
+        }}
       />
     </Stack>
   );

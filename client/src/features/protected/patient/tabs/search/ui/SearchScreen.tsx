@@ -1,5 +1,5 @@
-import { useSearchDebounce } from "@/hooks/useSearchDebounce";
 import { AsyncStateWrapper } from "@/components/AsyncStateWrapper";
+import { useSearchDebounce } from "@/hooks/useSearchDebounce";
 import { AppColors } from "@/theme/colors";
 import { Picker } from "@react-native-picker/picker";
 import { FlashList } from "@shopify/flash-list";
@@ -17,7 +17,6 @@ import {
   useGetSpecializations,
 } from "../services/search.servics";
 import RenderDoctor from "./RenderDoctorItem";
-import { usePaymentMutation } from "../services/payments.servics";
 
 const SearchScreen = () => {
   const [query, setQuery] = useState("");

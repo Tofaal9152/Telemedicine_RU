@@ -1,8 +1,7 @@
-import { Linking } from "react-native";
 import { useMutationHandler } from "@/hooks/useMutationHandler";
 import { request } from "@/lib/request";
-import { PaymentData } from "../schemas/payments.schema";
 import { useRouter } from "expo-router";
+import { PaymentData } from "../schemas/payments.schema";
 
 export function usePaymentMutation() {
   const router = useRouter();

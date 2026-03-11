@@ -88,7 +88,9 @@ const SettingScreen = () => {
 
           <View style={styles.row}>
             <Text style={styles.label}>Registration No.</Text>
-            <Text style={styles.value}>{doctor?.registrationNumber || "-"}</Text>
+            <Text style={styles.value}>
+              {doctor?.registrationNumber || "-"}
+            </Text>
           </View>
 
           <View style={[styles.row, styles.lastRow]}>
@@ -106,7 +108,9 @@ const SettingScreen = () => {
 
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>About</Text>
-          <Text style={styles.bioText}>{doctor?.bio || "No bio added yet."}</Text>
+          <Text style={styles.bioText}>
+            {doctor?.bio || "No bio added yet."}
+          </Text>
         </View>
 
         <View style={styles.card}>

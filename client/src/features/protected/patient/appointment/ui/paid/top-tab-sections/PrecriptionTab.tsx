@@ -49,107 +49,190 @@ const PrescriptionTab = () => {
         return;
       }
 
-      const html = `
-        <html>
-          <head>
-            <meta charset="utf-8" />
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                padding: 24px;
-                color: #233B4D;
-                line-height: 1.5;
-              }
-              h1, h2, h3 {
-                margin-bottom: 8px;
-              }
-              .section {
-                margin-top: 18px;
-                margin-bottom: 18px;
-              }
-              .card {
-                background: #F9FAFB;
-                border: 1px solid #E2E8F0;
-                border-radius: 10px;
-                padding: 12px;
-                margin-bottom: 10px;
-              }
-              .label {
-                font-weight: bold;
-              }
-              .muted {
-                color: #7B8A97;
-              }
-            </style>
-          </head>
-          <body>
-            <h1>Medical Prescription</h1>
+    const html = `
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
 
-            <div class="section">
-              <p><span class="label">Appointment ID:</span> ${escapeHtml(
-                prescription.appointmentId
-              )}</p>
-              <p><span class="label">Doctor:</span> ${escapeHtml(
-                prescription.doctor?.user?.name || "N/A"
-              )}</p>
-              <p><span class="label">Specialty:</span> ${escapeHtml(
-                prescription.doctor?.specialty || "N/A"
-              )}</p>
-              <p><span class="label">Patient:</span> ${escapeHtml(
-                prescription.patient?.user?.name || "N/A"
-              )}</p>
-              <p><span class="label">Patient Email:</span> ${escapeHtml(
-                prescription.patient?.user?.email || "N/A"
-              )}</p>
-            </div>
+body{
+font-family: Arial, sans-serif;
+padding:30px;
+color:#233B4D;
+}
 
-            <div class="section">
-              <h3>Symptoms</h3>
-              <p>${escapeHtml(prescription.symptoms || "No symptoms provided")}</p>
-            </div>
+.title{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+margin-bottom:20px;
+}
 
-            <div class="section">
-              <h3>Diagnosis</h3>
-              <p>${escapeHtml(
-                prescription.diagnosis || "No diagnosis provided"
-              )}</p>
-            </div>
+.top{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
 
-            <div class="section">
-              <h3>Medications</h3>
-              ${
-                medications.length > 0
-                  ? medications
-                      .map(
-                        (med: any) => `
-                          <div class="card">
-                            <p><span class="label">Name:</span> ${escapeHtml(
-                              med?.name || "N/A"
-                            )}</p>
-                            <p><span class="label">Dosage:</span> ${escapeHtml(
-                              med?.dosage || "N/A"
-                            )}</p>
-                            <p><span class="label">Frequency:</span> ${escapeHtml(
-                              med?.frequency || "N/A"
-                            )}</p>
-                            <p><span class="label">Duration:</span> ${escapeHtml(
-                              med?.duration || "N/A"
-                            )}</p>
-                          </div>
-                        `
-                      )
-                      .join("")
-                  : `<p class="muted">No medications prescribed.</p>`
-              }
-            </div>
+.section{
+margin-top:20px;
+}
 
-            <div class="section">
-              <h3>Notes</h3>
-              <p>${escapeHtml(prescription.notes || "No notes provided")}</p>
-            </div>
-          </body>
-        </html>
-      `;
+.section h3{
+margin-bottom:10px;
+border-bottom:2px solid #E2E8F0;
+padding-bottom:4px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px 30px;
+}
+
+.label{
+font-weight:bold;
+}
+
+.box{
+border:1px solid #E2E8F0;
+border-radius:6px;
+padding:10px;
+background:#F9FAFB;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid #E2E8F0;
+padding:8px;
+text-align:left;
+font-size:14px;
+}
+
+th{
+background:#F1F5F9;
+}
+
+.muted{
+color:#7B8A97;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="title">Medical Prescription</div>
+
+<div class="top">
+<div>
+<span class="label">Appointment ID:</span>
+${escapeHtml(prescription.appointmentId)}
+</div>
+
+<div>
+<span class="label">Doctor:</span>
+${escapeHtml(prescription.doctor?.user?.name || "N/A")}
+</div>
+</div>
+
+
+<div class="section">
+<h3>Patient Information</h3>
+
+<div class="grid">
+
+<div>
+<span class="label">Patient Name:</span><br/>
+${escapeHtml(prescription.patient?.user?.name || "N/A")}
+</div>
+
+<div>
+<span class="label">Patient Email:</span><br/>
+${escapeHtml(prescription.patient?.user?.email || "N/A")}
+</div>
+
+<div>
+<span class="label">Doctor Specialty:</span><br/>
+${escapeHtml(prescription.doctor?.specialty || "N/A")}
+</div>
+
+</div>
+</div>
+
+
+<div class="section">
+<h3>Symptoms</h3>
+
+<div class="box">
+${escapeHtml(prescription.symptoms || "No symptoms provided")}
+</div>
+</div>
+
+
+<div class="section">
+<h3>Diagnosis</h3>
+
+<div class="box">
+${escapeHtml(prescription.diagnosis || "No diagnosis provided")}
+</div>
+</div>
+
+
+<div class="section">
+<h3>Medications</h3>
+
+${
+medications.length > 0
+? `
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Dosage</th>
+<th>Frequency</th>
+<th>Duration</th>
+</tr>
+</thead>
+
+<tbody>
+
+${medications.map((med:any)=>`
+<tr>
+<td>${escapeHtml(med?.name || "N/A")}</td>
+<td>${escapeHtml(med?.dosage || "N/A")}</td>
+<td>${escapeHtml(med?.frequency || "N/A")}</td>
+<td>${escapeHtml(med?.duration || "N/A")}</td>
+</tr>
+`).join("")}
+
+</tbody>
+</table>
+`
+: `<p class="muted">No medications prescribed.</p>`
+}
+
+</div>
+
+
+<div class="section">
+<h3>Notes</h3>
+
+<div class="box">
+${escapeHtml(prescription.notes || "No notes provided")}
+</div>
+
+</div>
+
+
+</body>
+</html>
+`;
 
       const file = await Print.printToFileAsync({ html });
 

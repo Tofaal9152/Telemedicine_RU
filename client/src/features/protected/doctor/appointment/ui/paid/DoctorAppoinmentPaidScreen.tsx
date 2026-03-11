@@ -1,13 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import React from "react";
-import ChatTabs from "./top-tab-sections/ChatTabs";
-import PrecriptionTab from "./top-tab-sections/PrecriptionTab";
-import VideoCallTab from "./top-tab-sections/VideoCallTab";
+import DoctorCallTabs from "./top-tab-sections/DoctorCallTabs";
+import DoctorPrecriptionTab from "./top-tab-sections/PrescriptionTab/DoctorPrecriptionTab";
+import DoctorVideoCallTab from "./top-tab-sections/DoctorVideoCallTab";
 
 const Tab = createMaterialTopTabNavigator();
 
-const AppoinmentPaidScreen = () => {
+const DoctorAppoinmentPaidScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -26,7 +26,7 @@ const AppoinmentPaidScreen = () => {
     >
       <Tab.Screen
         name="Prescription"
-        component={PrecriptionTab}
+        component={DoctorPrecriptionTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="document-text-outline" size={18} color={color} />
@@ -36,7 +36,7 @@ const AppoinmentPaidScreen = () => {
 
       <Tab.Screen
         name="Chat"
-        component={ChatTabs}
+        component={DoctorCallTabs}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons
@@ -50,7 +50,7 @@ const AppoinmentPaidScreen = () => {
 
       <Tab.Screen
         name="Video Call"
-        component={VideoCallTab}
+        component={DoctorVideoCallTab}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="videocam-outline" size={18} color={color} />
@@ -61,4 +61,4 @@ const AppoinmentPaidScreen = () => {
   );
 };
 
-export default AppoinmentPaidScreen;
+export default DoctorAppoinmentPaidScreen;

@@ -1,8 +1,15 @@
 import { AsyncStateWrapper } from "@/components/AsyncStateWrapper";
 import { AppColors } from "@/theme/colors";
-import React, { useMemo, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
+import { useRouter } from "expo-router";
+import React, { useMemo, useState } from "react";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useGetDoctorAppointments } from "../services/appointments.servics";
 
 type AppointmentItem = {
@@ -27,6 +34,7 @@ type AppointmentItem = {
 };
 
 const AppointmentScreen = () => {
+  const router = useRouter();
   const [page, setPage] = useState(1);
 
   const userQuery = useGetDoctorAppointments({
@@ -37,7 +45,10 @@ const AppointmentScreen = () => {
 
   const apiData = userQuery.data;
 
-  const appointments: AppointmentItem[] = apiData?.results ?? [];
+  const appointments: AppointmentItem[] = useMemo(
+    () => apiData?.results ?? [],
+    [apiData?.results]
+  );
   const currentPage = apiData?.currentPage ?? 1;
   const totalPages = apiData?.totalPages ?? 1;
   const hasNextPage = currentPage < totalPages;
@@ -110,6 +121,17 @@ const AppointmentScreen = () => {
             Since {new Date(item.patient?.user?.createdAt).toLocaleDateString()}
           </Text>
         </View>
+        <Pressable
+          style={styles.detailsButton}
+          onPress={() =>
+            router.push({
+              pathname: "/appointment/paid/[id]",
+              params: { id: item.id },
+            })
+          }
+        >
+          <Text style={styles.detailsButtonText}>View Details</Text>
+        </Pressable>
       </View>
     );
   };
@@ -383,5 +405,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     color: AppColors.subtitleText,
+  },
+  detailsButton: {
+    marginTop: 14,
+    backgroundColor: AppColors.primary,
+    borderRadius: 12,
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+
+  detailsButtonText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "700",
   },
 });

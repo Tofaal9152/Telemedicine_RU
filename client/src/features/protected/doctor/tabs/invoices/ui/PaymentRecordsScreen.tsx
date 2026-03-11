@@ -34,7 +34,10 @@ const PaymentRecordsScreen = () => {
   const recordsQuery = useGetPaymentRecords({ page });
   const apiData = recordsQuery.data;
 
-  const records: PaymentRecordItem[] = apiData?.results ?? [];
+  const records: PaymentRecordItem[] = useMemo(
+    () => apiData?.results ?? [],
+    [apiData?.results]
+  );
   const currentPage = apiData?.currentPage ?? 1;
   const totalPages = apiData?.totalPages ?? 1;
   const hasNextPage = currentPage < totalPages;
