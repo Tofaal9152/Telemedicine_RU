@@ -1,10 +1,10 @@
 import { AsyncStateWrapper } from "@/components/AsyncStateWrapper";
 import { useGetAppointmentById } from "@/features/protected/doctor/appointment/services/appointmentById";
-import Chat from "@/features/protected/shared/chat/ui/Chat";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
+import CallTabsContent from "./CallTabsContent";
 
-const ChatTabs = () => {
+const CallTabs = () => {
   const { id: appointmentId } = useLocalSearchParams<{ id?: string }>();
   const appointmentQuery = useGetAppointmentById({
     appointmentId: appointmentId ?? "",
@@ -15,9 +15,12 @@ const ChatTabs = () => {
       isError={appointmentQuery.isError}
       error={appointmentQuery.error}
     >
-      <Chat data={appointmentQuery?.data} />
+      <CallTabsContent
+        doctorId={appointmentQuery.data?.doctorId}
+        patientId={appointmentQuery.data?.patientId}
+      />
     </AsyncStateWrapper>
   );
 };
 
-export default ChatTabs;
+export default CallTabs;

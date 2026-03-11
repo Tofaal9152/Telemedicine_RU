@@ -1,9 +1,9 @@
+import CallTabs from "@/features/protected/shared/call/ui/CallTabs";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import React from "react";
-import ChatTabs from "./top-tab-sections/ChatTabs";
+import ChatTabs from "../../../../shared/chat/ui/ChatTabs";
 import PrecriptionTab from "./top-tab-sections/PrecriptionTab";
-import VideoCallTab from "./top-tab-sections/VideoCallTab";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -50,7 +50,7 @@ const AppoinmentPaidScreen = () => {
 
       <Tab.Screen
         name="Video Call"
-        component={VideoCallTab}
+        component={CallTabs}
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="videocam-outline" size={18} color={color} />

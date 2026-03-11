@@ -4,19 +4,26 @@ import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 import QueryProvider from "./QueryProvider";
+import { WebSocketProvider } from "@/context/webSocketContext";
+import { PeerProvider } from "@/context/Peer";
+
 type Props = { children: ReactNode };
 
 export default function AppProviders({ children }: Props) {
   return (
     <Fragment>
       <QueryProvider>
-        <SafeAreaProvider>
-          {/* <SafeAreaView style={safeAreaStyle}> */}
-          <KeyboardProvider>{children}</KeyboardProvider>
-          <StatusBar style="auto" animated />
-          <Toast />
-          {/* </SafeAreaView> */}
-        </SafeAreaProvider>
+        <WebSocketProvider>
+          <PeerProvider>
+            <SafeAreaProvider>
+              {/* <SafeAreaView style={safeAreaStyle}> */}
+              <KeyboardProvider>{children}</KeyboardProvider>
+              <StatusBar style="auto" animated />
+              <Toast />
+              {/* </SafeAreaView> */}
+            </SafeAreaProvider>
+          </PeerProvider>
+        </WebSocketProvider>
       </QueryProvider>
     </Fragment>
   );

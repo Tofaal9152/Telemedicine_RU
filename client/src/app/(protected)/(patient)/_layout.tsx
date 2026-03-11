@@ -29,6 +29,16 @@ export default function PatientLayout() {
           headerTitleStyle: { fontWeight: "600" },
         }}
       />
+      <Stack.Screen
+        name="appointment/paid/call/[room]/index"
+        options={{
+          headerShown: true,
+          title: "Consultation",
+          headerStyle: { backgroundColor: "#233B4D" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "600" },
+        }}
+      />
     </Stack>
   );
 }

@@ -12,16 +12,16 @@ export const useChatMessages = (
   const socket = useSocket();
 
   const [messages, setMessages] = useState<any[]>([]);
-  const [message, setMessage] = useState("");
-  // always show latest messages when open chat screen, so refetchOnMount: true, staleTime: 0
+
   const PrevChat = useFetchData<any>({
     url: `/chats?doctorId=${doctorId}&patientId=${patientId}`,
     querykey: ["chat", doctorId, patientId],
     options: {
       refetchOnWindowFocus: true,
-      refetchOnReconnect: true, // ✅ net back হলে auto refetch off
-      refetchOnMount: true, // ✅ screen mount হলে auto refetch off
+      refetchOnReconnect: true,
+      refetchOnMount: true,
       staleTime: 0,
+      enabled: !!(doctorId && patientId),
     },
   });
 
@@ -53,25 +53,24 @@ export const useChatMessages = (
     };
   }, [socket]);
 
-  const handleSendMessage = useCallback(() => {
-    if (!message.trim()) return;
+  const handleSendMessage = useCallback(
+    (text: string) => {
+      if (!text.trim()) return;
 
-    const payload = {
-      content: message.trim(),
-      doctorId: doctorId,
-      patientId: patientId,
-      userId: userId,
-    };
-    console.log(payload);
+      const payload = {
+        content: text.trim(),
+        doctorId,
+        patientId,
+        userId,
+      };
 
-    socket.emit("createMessage", payload);
-    setMessage("");
-  }, [message, doctorId, patientId, userId, socket]);
+      socket.emit("createMessage", payload);
+    },
+    [doctorId, patientId, userId, socket]
+  );
 
   return {
     messages,
-    message,
-    setMessage,
     handleSendMessage,
     PrevChat,
   };

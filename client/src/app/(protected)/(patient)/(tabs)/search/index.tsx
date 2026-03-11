@@ -3,7 +3,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SearchIndex() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+      edges={["top"]}
+    >
       <SearchScreen />
     </SafeAreaView>
   );
